@@ -11,5 +11,5 @@ computers and history.
 
 ## License
 
-Copyright (c) 2017 Ben O'Neill <ben@benoneill.xyz>. Licensed under the
+Copyright (c) 2017 Ben O'Neill <ben@oneill.sh>. Licensed under the
 MIT License. See LICENSE.
