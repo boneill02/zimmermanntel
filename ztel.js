@@ -45,7 +45,7 @@ function encrypt(axis, grid, message) {
 		"axis value was not six characters.";
 	}
 
-	message = message.replaceAll(" ", "").replace(/\W/g, "").toUpperCase();
+	message = message.replaceAll(/\W/g, "X").toUpperCase();
 
 	for(i = 0; i < message.length; i++) {
 		for(j = 0; j < 36; j++) {
