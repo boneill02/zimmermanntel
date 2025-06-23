@@ -7,6 +7,10 @@ direct US involvement in World War I.
 This was one of my first programming projects. It combined my passions for
 computers and history.
 
+## Further Reading
+
+* [The Zimmermann Telegram on U.S. National Archives](https://www.archives.gov/education/lessons/zimmermann)
+
 ## License
 
 Copyright (c) 2017 Ben O'Neill <ben@oneill.sh>. Licensed under the
