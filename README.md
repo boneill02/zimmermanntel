@@ -1,4 +1,4 @@
-# ADFGVX/Zimmermann Telegram Encrypter/Decrypter ([Demo](https://oneill.sh/apps/zimmermanntel))
+# [ADFGVX/Zimmermann Telegram Encrypter/Decrypter](https://oneill.sh/apps/zimmermanntel)
 
 This is a webpage that encrypts and decrypts texts using the same cryptographic
 methods employed for the Zimmermann Telegram message that generated support for
