@@ -1,14 +1,14 @@
 const alphabetNumbers = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-var outputDivElement = document.getElementById("output");
-var outputElement = document.getElementById("outputDisplay");
-var axisElement = document.getElementById("axis");
-var gridElement = document.getElementById("grid");
-var inputElement = document.getElementById("input");
+const outputDivElement = document.getElementById("output");
+const outputElement = document.getElementById("outputDisplay");
+const axisElement = document.getElementById("axis");
+const gridElement = document.getElementById("grid");
+const inputElement = document.getElementById("input");
 
+/* Useful string functions */
 String.prototype.replaceAll = function(search, replacement) {
 	return this.replace(new RegExp(search, 'g'), replacement);
 };
-
 String.prototype.shuffle = function () {
 	var a = this.split(""),
 		n = a.length;
@@ -22,14 +22,34 @@ String.prototype.shuffle = function () {
 	return a.join("");
 }
 
+function decrypt(axis, grid, message) {
+	grid = grid.toUpperCase();
+	axis = axis.toUpperCase();
 
-function generateGrid() {
-	return alphabetNumbers.shuffle();
+	if(grid.length !== 36) {
+		return "Sorry, but your message could not be decrypted because the " +
+		"grid was not thirty-six characters.";
+	}
+	if(axis.length !== 6) {
+		return "Sorry, but your message could not be decrypted because the " +
+		"axis was not six characters.";
+	}
+
+	message = message.replaceAll(" ", "").toUpperCase().replace(/\W/g, "");
+
+	var decryptedMessage = "";
+	for(i = 0; i < message.length; i = i + 2) {
+		for(j = 0; j < 36; j++) {
+			if("" + axis.charAt(Math.floor(j / 6)) + axis.charAt(j -
+				(Math.floor(j / 6) * 6)) ===
+					message.substring(i, i + 2).toUpperCase()) {
+						decryptedMessage += grid.substring(j, j + 1);
+			}
+		}
+	}
+	return decryptedMessage;
 }
 
-function generateAxis() {
-	return alphabetNumbers.shuffle().substring(0, 6);
-}
 
 function encrypt(axis, grid, message) {
 	grid = grid.toUpperCase();
@@ -61,32 +81,12 @@ function encrypt(axis, grid, message) {
 	return encryptedMessage;
 }
 
-function decrypt(axis, grid, message) {
-	grid = grid.toUpperCase();
-	axis = axis.toUpperCase();
+function generateGrid() {
+	return alphabetNumbers.shuffle();
+}
 
-	if(grid.length !== 36) {
-		return "Sorry, but your message could not be decrypted because the " +
-		"grid length was not thirty-six characters.";
-	}
-	if(axis.length !== 6) {
-		return "Sorry, but your message could not be decrypted because the " +
-		"axis value was not six characters.";
-	}
-
-	message = message.replaceAll(" ", "").toUpperCase().replace(/\W/g, "");
-
-	var decryptedMessage = "";
-	for(i = 0; i < message.length; i = i + 2) {
-		for(j = 0; j < 36; j++) {
-			if("" + axis.charAt(Math.floor(j / 6)) + axis.charAt(j -
-				(Math.floor(j / 6) * 6)) ===
-					message.substring(i, i + 2).toUpperCase()) {
-						decryptedMessage += grid.substring(j, j + 1);
-			}
-		}
-	}
-	return decryptedMessage;
+function generateAxis() {
+	return alphabetNumbers.shuffle().substring(0, 6);
 }
 
 function encryptFromDoc() {
@@ -101,7 +101,9 @@ function decryptFromDoc() {
 	outputDivElement.style.display = "block";
 }
 
-axisElement.value = generateAxis();
-gridElement.value = generateGrid();
+function randomize() {
+    axisElement.value = generateAxis();
+    gridElement.value = generateGrid();
+}
 
 outputDivElement.style.display = "none";
